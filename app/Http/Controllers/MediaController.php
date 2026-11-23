@@ -21,7 +21,15 @@ class MediaController extends Controller
             })
             ->paginate(10);
 
-        return MediaResource::collection($media);
+        return response()->json([
+            'data' => MediaResource::collection($media->items()),
+            'meta' => [
+                'current_page' => $media->currentPage(),
+                'last_page' => $media->lastPage(),
+                'per_page' => $media->perPage(),
+                'total' => $media->total(),
+            ],
+        ]);
     }
 
     // Route Model Binding: Laravel otomatis mencari Media berdasarkan ID di URL

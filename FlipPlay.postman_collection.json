@@ -1,0 +1,221 @@
+{
+  "info": {
+    "name": "FlipPlay API",
+    "description": "Koleksi endpoint REST API FlipPlay (Demo Modul 4 - Laravel CRUD, Eloquent ORM & Relationship).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000" },
+    { "key": "media_id", "value": "1" },
+    { "key": "pengguna_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Media",
+      "item": [
+        {
+          "name": "List Media",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/media",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media"]
+            }
+          }
+        },
+        {
+          "name": "Search Media",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/media?search=batman",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media"],
+              "query": [{ "key": "search", "value": "batman" }]
+            }
+          }
+        },
+        {
+          "name": "Detail Media",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/media/{{media_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media", "{{media_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Media",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Batman Begins\",\n  \"type\": \"movie\",\n  \"genre\": \"Action\",\n  \"release_year\": 2005,\n  \"description\": \"Film origin story Batman\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/media",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media"]
+            }
+          }
+        },
+        {
+          "name": "Update Media",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"genre\": \"Action, Crime\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/media/{{media_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media", "{{media_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Media",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/media/{{media_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "media", "{{media_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pengguna",
+      "item": [
+        {
+          "name": "List Pengguna",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/pengguna",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna"]
+            }
+          }
+        },
+        {
+          "name": "Detail Pengguna",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/pengguna/{{pengguna_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna", "{{pengguna_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Pengguna",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Gilang\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pengguna",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna"]
+            }
+          }
+        },
+        {
+          "name": "Update Pengguna",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Gilang Updated\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pengguna/{{pengguna_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna", "{{pengguna_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Pengguna",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/pengguna/{{pengguna_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna", "{{pengguna_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Koleksi (Relasi)",
+      "item": [
+        {
+          "name": "Tambah Media ke Koleksi",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"media_id\": {{media_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pengguna/{{pengguna_id}}/koleksi",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna", "{{pengguna_id}}", "koleksi"]
+            }
+          }
+        },
+        {
+          "name": "Hapus Media dari Koleksi",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/pengguna/{{pengguna_id}}/koleksi/{{media_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pengguna", "{{pengguna_id}}", "koleksi", "{{media_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

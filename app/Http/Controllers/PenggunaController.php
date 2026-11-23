@@ -12,7 +12,16 @@ class PenggunaController extends Controller
     public function index()
     {
         $pengguna = Pengguna::with('media')->paginate(10);
-        return PenggunaResource::collection($pengguna);
+
+        return response()->json([
+            'data' => PenggunaResource::collection($pengguna->items()),
+            'meta' => [
+                'current_page' => $pengguna->currentPage(),
+                'last_page' => $pengguna->lastPage(),
+                'per_page' => $pengguna->perPage(),
+                'total' => $pengguna->total(),
+            ],
+        ]);
     }
 
     // Route Model Binding: Laravel otomatis mencari Pengguna berdasarkan ID di URL
